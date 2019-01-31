@@ -1,0 +1,32 @@
+{
+  "job_id": "demo.advance.read.tmdweatherstation",
+  "active": "false",
+  "trigger": {
+    "type": "cron",
+    "cmd": "*/5 * * * *"
+  },
+  "data_in": {
+    "type": "http-request",
+    "param": {
+      "url": "https://data.tmd.go.th/api/Weather3Hours/V1/?uid=api&ukey=api12345&type=json",
+      "encoding": "json"
+    }
+  },
+  "data_transform": {
+    "type": "transform",
+    "param": {
+      "script": [
+        "data = src.data.Stations"
+      ]
+    }
+  },
+  "data_out": {
+    "type": "call",
+    "param": {
+      "to": [
+        "demo.advance.read.tmdweatherstation.sub"
+      ]
+    }
+  },
+  "_vo": "demo"
+}

@@ -1,0 +1,17 @@
+{
+  "job_id": "demo.advance.read.tmdweatherstation.rawstorage",
+  "active": "false",
+  "data_in": {
+    "type": "input"
+  },
+  "data_transform": {
+    "type": "noop"
+  },
+  "data_out": {
+    "type": "storage",
+    "param": {
+      "storage_name": "demo.advance.read.tmdweatherstation.rawstorage.${data.WmoNumber}"
+    }
+  },
+  "_vo": "demo"
+}

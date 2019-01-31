@@ -1,0 +1,31 @@
+{
+  "job_id": "demo.rainradar.bkk",
+  "active": "true",
+  "trigger": {
+    "type": "cron",
+    "cmd": "*/5 * * * *"
+  },
+  "data_in": {
+    "type": "http-request",
+    "param": {
+      "url": "http://203.155.220.231/Radar/pics/zfiltered.jpg",
+      "encoding": "binary"
+    }
+  },
+  "data_transform": [
+    {
+      "type": "filter-duplicate",
+      "param": {
+        "name": "bkk"
+      }
+    }
+  ],
+  "data_out": {
+    "type": "storage",
+    "param": {
+      "channel": "ipc",
+      "storage_name": "demo.rainradar.bkk"
+    }
+  },
+  "_vo": "demo"
+}
