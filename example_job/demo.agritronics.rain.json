@@ -1,0 +1,36 @@
+{
+    "job_id": "demo.agritronics.rain",
+    "active": "true",
+    "job_timeout": "600000",
+    "data_in": {
+        "type": "tanpibut",
+        "profile": {
+            "station_id": "CM-LS-138",
+            "latitude": "20.061783",
+            "longitude": "20.061783"
+        },
+        "param": {
+            "recover": "false",
+            "url": "http://122.155.1.142/ws/get2.php",
+            "appkey": "0c5a295bd8c07a0806411b79e1fd73",
+            "station_id": "CM-LS-138",
+            "data_type": {
+                "type": "6",
+                "name": "Rain",
+                "node_id": "4096"
+            },
+            "init_observed_date": "2018-01-01",
+            "init_observed_time": "00:00:00",
+            "limit": "20"
+        }
+    },
+    "data_transform": {
+        "type": "tanpibut"
+    },
+    "data_out": {
+        "type": "storage",
+        "param": {
+            "storage_name": "demo.agritronics.rain"
+        }
+    }
+}
