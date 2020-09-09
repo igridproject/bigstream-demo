@@ -1,0 +1,30 @@
+{
+  "job_id": "ex01_radar",
+  "active": "true",
+  "trigger": {
+    "type": "cron",
+    "cmd": "*/2 * * * *"
+  },
+  "data_in": {
+    "type": "http-request",
+    "param": {
+      "url": "http://weather.bangkok.go.th/FTPCustomer/radar/pics/zfiltered.jpg",
+      "encoding": "binary"
+    }
+  },
+  "data_transform": [
+    {
+      "type": "filter-duplicate",
+      "param": {
+        "name": "bkk"
+      }
+    }
+  ],
+  "data_out": {
+    "type": "storage",
+    "param": {
+      "storage_name": "tmd.rainradar.bkk"
+    }
+  },
+  "_vo": ""
+}

@@ -1,0 +1,42 @@
+{
+  "job_id": "advance.tmdweatherstation.substation",
+  "active": "true",
+  "data_in": {
+    "type": "input"
+  },
+  "data_transform": [
+    {
+      "type": "transform",
+      "param": {
+        "script": [
+          "let date=src.data.Observation.DateTime.substring(0,src.data.Observation.DateTime.indexOf(' ')).split('/')",
+          "let time=src.data.Observation.DateTime.substring(src.data.Observation.DateTime.indexOf(' ')+1).split(':')",
+          "src.data.Observation.DateTime = date[2]+'-'+date[0]+'-'+date[1]+' '+time[0]+':'+time[1]+':'+time[2]",
+          "data = src.data"
+        ]
+      }
+    },
+    {
+      "type": "filter-condition",
+      "param": {
+        "condition": "(typeof data.Observation.AirTemperature != 'string') || (typeof data.Latitude != 'string') || (typeof data.Longitude != 'string') || (typeof data.Observation.Rainfall != 'string')"
+      }
+    },
+    {
+      "type": "filter-duplicate",
+      "param": {
+        "name": "demo.advance.tmdweatherstation.substation.${data.WmoStationNumber}",
+        "key": "${data.Observation.DateTime}"
+      }
+    }
+  ],
+  "data_out": {
+    "type": "call",
+    "param": {
+      "to": [
+        "advance.tmdweatherstation.rawstorage"
+      ]
+    }
+  },
+  "_vo": ""
+}

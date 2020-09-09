@@ -1,0 +1,28 @@
+{
+  "job_id": "httppush.storage",
+  "active": "true",
+  "trigger": {
+    "type": "http",
+    "appkey": "app",
+    "method": "get"
+  },
+  "data_in": {
+    "type": "input",
+    "param": {
+      "object": "httpdata"
+    }
+  },
+  "data_transform": {
+    "type": "transform",
+    "param": {
+      "script": "data.ts=String(Math.floor(Date.now() / 1000))"
+    }
+  },
+  "data_out": {
+    "type": "storage",
+    "param": {
+      "storage_name": "httppush"
+    }
+  },
+  "_vo": ""
+}

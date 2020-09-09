@@ -1,0 +1,33 @@
+{
+  "job_id": "advance.tmdweatherstation",
+  "active": "true",
+  "trigger": {
+    "type": "cron",
+    "cmd": "10,30,50 * * * *"
+  },
+  "data_in": {
+    "type": "http-request",
+    "param": {
+      "url": "https://data.tmd.go.th/api/Weather3Hours/V2/?uid=api&ukey=api12345&format=json",
+      "encoding": "json"
+    }
+  },
+  "data_transform": {
+    "type": "transform",
+    "param": {
+      "script": [
+        "data = src.data.Stations.Station",
+        "data.splice(data.findIndex(v => v.WmoStationNumber === '48457'),1)"
+      ]
+    }
+  },
+  "data_out": {
+    "type": "call",
+    "param": {
+      "to": [
+        "advance.tmdweatherstation.substation"
+      ]
+    }
+  },
+  "_vo": ""
+}

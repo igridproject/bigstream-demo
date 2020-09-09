@@ -1,0 +1,46 @@
+{
+  "job_id": "ex02_openweather",
+  "active": "true",
+  "trigger": {
+    "type": "cron",
+    "cmd": "*/2 * * * *"
+  },
+  "data_in": {
+    "type": "http-request",
+    "param": {
+      "url": "http://api.openweathermap.org/data/2.5/weather?lat=14.0780167&lon=100.606368&appid=3b82bd346aa885379ae8136478ba91d8",
+      "encoding": "json"
+    }
+  },
+  "data_transform": [
+    {
+      "type": "transform",
+      "param": {
+        "script": [
+          "data={}",
+          "data.temp=(src.data.main.temp-273.15).toFixed(2)",
+          "data.hum=src.data.main.humidity",
+          "data.pressure=src.data.main.pressure",
+          "data.wind_speed=src.data.wind.speed",
+          "data.wind_deg=src.data.wind.deg",
+          "data.ts=src.data.dt",
+          "meta.site='pathum'"
+        ]
+      }
+    },
+    {
+      "type": "filter-duplicate",
+      "param": {
+        "name": "pathum",
+        "key": "${data.ts}"
+      }
+    }
+  ],
+  "data_out": {
+    "type": "storage",
+    "param": {
+      "storage_name": "openweather.pathum"
+    }
+  },
+  "_vo": ""
+}
