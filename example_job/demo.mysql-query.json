@@ -1,0 +1,38 @@
+{
+  "job_id": "demo.mysql-query",
+  "active": "true",
+  "trigger": {
+    "type": "http",
+    "appkey": "myquery",
+    "method": "get"
+  },
+  "data_in": {
+    "type": "input",
+    "param": {
+      "object": "httpdata"
+    }
+  },
+  "data_transform": [
+    {
+      "type": "mysql",
+      "param": {
+        "host": "127.0.0.1",
+        "user": "gcs",
+        "password": "kamron",
+        "database": "bigstream",
+        "sql": "SELECT * FROM envlog"
+      }
+    },
+    {
+      "type": "transform",
+      "param": {
+        "script": "data = src.data.result"
+      }
+    }
+  ],
+  "data_out": {
+    "type": "console",
+    "param": {}
+  },
+  "_vo": ""
+}

@@ -1,0 +1,34 @@
+{
+  "job_id": "demo.http2mysql",
+  "active": "true",
+  "trigger": {
+    "type": "http",
+    "appkey": "mysql",
+    "method": "post"
+  },
+  "data_in": {
+    "type": "input",
+    "param": {
+      "object": "httpdata"
+    }
+  },
+  "data_transform": [
+    {
+      "type": "transform",
+      "param": {
+        "script": "data = src.data"
+      }
+    }
+  ],
+  "data_out": {
+    "type": "mysql",
+    "param": {
+      "host": "127.0.0.1",
+      "user": "gcs",
+      "password": "kamron",
+      "database": "bigstream",
+      "sql": "INSERT INTO envlog (fkey,fval) values ('${data.k}','${data.v}')"
+    }
+  },
+  "_vo": ""
+}
