@@ -1,0 +1,24 @@
+{
+  "job_id": "demo.mqttpub",
+  "active": "true",
+  "trigger": {
+    "type": "cron",
+    "cmd": "*/10 * * * * *"
+  },
+  "data_in": {
+    "type": "input"
+  },
+  "data_transform": {
+    "type": "transform",
+    "param": {
+      "script": "data='test test'"
+    }
+  },
+  "data_out": {
+    "type": "mqtt",
+    "param": {
+      "topic": "testpub"
+    }
+  },
+  "_vo": ""
+}

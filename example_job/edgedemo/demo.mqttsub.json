@@ -1,0 +1,18 @@
+{
+  "job_id": "demo.mqttsub",
+  "active": "true",
+  "trigger": {
+    "type": "mqtt",
+    "topic": "testsub"
+  },
+  "data_in": {
+    "type": "input"
+  },
+  "data_transform": {
+    "type": "noop"
+  },
+  "data_out": {
+    "type": "console"
+  },
+  "_vo": ""
+}

@@ -1,0 +1,21 @@
+{
+  "job_id": "demo.mqttrelay",
+  "active": "true",
+  "trigger": {
+    "type": "mqtt",
+    "topic": "fromtopic"
+  },
+  "data_in": {
+    "type": "input"
+  },
+  "data_transform": {
+    "type": "noop"
+  },
+  "data_out": {
+    "type": "mqtt",
+    "param": {
+      "topic": "targettopic"
+    }
+  },
+  "_vo": ""
+}

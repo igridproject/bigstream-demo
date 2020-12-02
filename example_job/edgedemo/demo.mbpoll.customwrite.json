@@ -1,0 +1,35 @@
+{
+  "job_id": "demo.mbpoll.customwrite",
+  "active": "true",
+  "trigger": {
+    "type": "modbus-poll",
+    "conn": {
+      "url": "tcp://127.0.0.1:502"
+    },
+    "client_id": "2",
+    "address": "0",
+	"register_length": "1",
+    "function_code": "FC1",
+    "data_type": "hex",
+    "delay": "100"
+  },
+  "data_in": {
+    "type": "input"
+  },
+  "data_transform": {
+    "type": "noop"
+  },
+  "data_out": {
+    "type": "modbus-tcp",
+    "param": {
+      "host": "127.0.0.1",
+      "port": "502",
+      "client_id": "2",
+      "function_code": "16",
+      "register_length": "2",
+      "address": "1",
+      "value": "0xff,0x${data.value}"
+    }
+  },
+  "_vo": ""
+}
